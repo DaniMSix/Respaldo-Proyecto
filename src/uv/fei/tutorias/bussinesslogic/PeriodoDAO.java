@@ -48,7 +48,21 @@ public class PeriodoDAO implements IPeriodoDAO {
 
     @Override
     public int registrarPeriodo(Periodo periodo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DataBaseConnection dataBaseConnection = new DataBaseConnection();
+        int filasInsertadas = 0;
+        try(Connection connection=dataBaseConnection.getConnection()){
+            String fechaInicio = periodo.getFechaInicio();
+            String fechaFin = periodo.getFechaFin();
+            String query = "INSERT INTO periodo (FechaInicio, FechaFin) VALUES (?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, fechaInicio);
+            statement.setString(2, fechaFin);
+            filasInsertadas = statement.executeUpdate();
+            System.out.println(filasInsertadas + " Fila insertada ");
+        } catch (SQLException ex) {
+            log.error(ex);
+        }
+        return filasInsertadas;
     }
 
     @Override
@@ -73,15 +87,12 @@ public class PeriodoDAO implements IPeriodoDAO {
             if (!resultSet.next()){
                 throw new SQLException("No se encontraron periodos");
             }else{
-                int idPeriodo;
                 String fechaInicio;
                 String fechaFin;
                 do {
-                    idPeriodo = resultSet.getInt("IdPeriodo");
                     fechaInicio = resultSet.getString("FechaInicio");
                     fechaFin = resultSet.getString("FechaFin");
                     Periodo periodo = new Periodo();
-                    periodo.setIdPeriodo(idPeriodo);
                     periodo.setFechaInicio(fechaInicio);
                     periodo.setFechaFin(fechaFin);
                     periodos.add(periodo);

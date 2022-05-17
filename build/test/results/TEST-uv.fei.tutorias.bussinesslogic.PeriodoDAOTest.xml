@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-1JNT75L" name="uv.fei.tutorias.bussinesslogic.SesionTutoriaDAOTest" skipped="0" tests="1" time="3.528" timestamp="2022-05-16T16:27:16">
+<testsuite errors="0" failures="0" hostname="DESKTOP-1JNT75L" name="uv.fei.tutorias.bussinesslogic.PeriodoDAOTest" skipped="0" tests="1" time="4.346" timestamp="2022-05-17T11:53:47">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="MX" />
@@ -11,15 +11,15 @@
     <property name="libs.jsf20.maven-pom" value="" />
     <property name="manifest.custom.codebase" value="*" />
     <property name="javafx.signing.blob" value="false" />
-    <property name="javac.test.sourcepath" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build\empty" />
+    <property name="javac.test.sourcepath" value="C:\Users\DMS19\Desktop\SistemaTutorias\build\empty" />
     <property name="maven.defaultProjectBuilder.disableGlobalModelCache" value="true" />
     <property name="libs.spring-webmvc4.0.src" value="" />
-    <property name="javac.includes" value="uv/fei/tutorias/bussinesslogic/SesionTutoriaDAOTest.java" />
+    <property name="javac.includes" value="uv/fei/tutorias/bussinesslogic/PeriodoDAOTest.java" />
     <property name="ant.core.lib" value="C:\Program Files\NetBeans-13\netbeans\extide\ant\lib\ant.jar" />
     <property name="javadoc.windowtitle" value="" />
     <property name="libs.jsp-compilation.javadoc" value="" />
     <property name="javafx.preloader.enabled" value="false" />
-    <property name="user.dir" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias" />
+    <property name="user.dir" value="C:\Users\DMS19\Desktop\SistemaTutorias" />
     <property name="libs.javaee-api-7.0.src" value="" />
     <property name="java.vm.version" value="25.202-b08" />
     <property name="libs.jakartaee-web-api-8.0.maven-pom" value="" />
@@ -43,7 +43,7 @@
     <property name="libs.hamcrest.classpath" value="C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\hamcrest-core-1.3.jar" />
     <property name="os.name" value="Windows 10" />
     <property name="libs.jakartaee-web-api-9.0.javadoc" value="C:\Program Files\NetBeans-13\netbeans\enterprise\docs\jakartaee9-doc-api.jar" />
-    <property name="test.class" value="uv.fei.tutorias.bussinesslogic.SesionTutoriaDAOTest" />
+    <property name="test.class" value="uv.fei.tutorias.bussinesslogic.PeriodoDAOTest" />
     <property name="libs.javaee-endorsed-api-7.0.maven-pom" value="" />
     <property name="ap.proc.none.internal" value="" />
     <property name="libs.restapi.javadoc" value="" />
@@ -64,7 +64,7 @@
     <property name="libs.spring-webmvc5.0.javadoc" value="" />
     <property name="libs.spring-framework500.classpath" value="C:\Program Files\NetBeans-13\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-aop-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-aspects-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-beans-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-context-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-context-indexer-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-context-support-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-core-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-expression-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-instrument-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-jcl-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-jdbc-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-jms-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-messaging-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-orm-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-oxm-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-test-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-tx-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-web-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-webflux-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-webmvc-5.2.9.RELEASE.jar;C:\Program Files\NetBeans-13\netbeans\java\modules\ext\spring-5\spring-websocket-5.2.9.RELEASE.jar" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner uv.fei.tutorias.bussinesslogic.SesionTutoriaDAOTest methods=testRegistrarSesionTutoria skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build\test\results\TEST-uv.fei.tutorias.bussinesslogic.SesionTutoriaDAOTest.xml crashfile=C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build\junitvmwatcher5576213293507742608.properties propsfile=C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build\junit1306725062644110304.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner uv.fei.tutorias.bussinesslogic.PeriodoDAOTest methods=testRegistrarPeriodo skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\DMS19\Desktop\SistemaTutorias\build\test\results\TEST-uv.fei.tutorias.bussinesslogic.PeriodoDAOTest.xml crashfile=C:\Users\DMS19\Desktop\SistemaTutorias\build\junitvmwatcher8061139424632681132.properties propsfile=C:\Users\DMS19\Desktop\SistemaTutorias\build\junit6381316477168209656.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="build.sysclasspath" value="ignore" />
     <property name="manifest.encoding" value="UTF-8" />
@@ -92,7 +92,7 @@
     <property name="javac.modulepath" value="" />
     <property name="javafx.deploy.includeDT" value="true" />
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_202\jre\lib\endorsed" />
-    <property name="test.method" value="testRegistrarSesionTutoria" />
+    <property name="test.method" value="testRegistrarPeriodo" />
     <property name="libs.groovy-all.src" value="" />
     <property name="libs.junit_5.src" value="C:\Program Files\NetBeans-13\netbeans\platform\docs\junit-jupiter-api-5.6.0-sources.jar;C:\Program Files\NetBeans-13\netbeans\platform\docs\junit-jupiter-params-5.6.0-sources.jar;C:\Program Files\NetBeans-13\netbeans\platform\docs\junit-jupiter-engine-5.6.0-sources.jar" />
     <property name="libs.jakartaee-api-8.0.classpath" value="C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\jakarta.jakartaee-api-8.0.0.jar" />
@@ -115,7 +115,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\null1103562668" />
+    <property name="javac.includesfile.binary" value="C:\Users\DMS19\Desktop\SistemaTutorias\null119589774" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value="C:\Program Files (x86)\MySQL\Connector J 8.0\mysql-connector-java-8.0.29.jar:C:\Program Files\Java\jdk1.8.0_202\jre/lib/javaws.jar:C:\Program Files\Java\jdk1.8.0_202\jre/lib/deploy.jar:C:\Program Files\Java\jdk1.8.0_202\jre/lib/plugin.jar:C:\Users\DMS19\Downloads\log4j-1.2.15.jar\log4j-1.2.15.jar:build/classes:C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\junit-4.13.2.jar:C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\hamcrest-core-1.3.jar" />
@@ -128,7 +128,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="libs.jaxb.javadoc" value="C:\Program Files\NetBeans-13\netbeans\ide\docs\jaxb-api-doc.jar" />
     <property name="libs.struts.classpath" value="C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\antlr-2.7.2.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\bsf-2.3.0.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\commons-beanutils-1.8.0.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\commons-chain-1.2.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\commons-digester-1.8.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\commons-fileupload-1.1.1.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\commons-io-1.1.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\commons-logging-1.0.4.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\commons-validator-1.3.1.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\jstl-1.0.2.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\oro-2.0.8.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\standard-1.0.6.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\struts-core-1.3.10.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\struts-el-1.3.10.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\struts-extras-1.3.10.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\struts-faces-1.3.10.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\struts-mailreader-dao-1.3.10.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\struts-scripting-1.3.10.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\struts-taglib-1.3.10.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\struts\struts-tiles-1.3.10.jar" />
-    <property name="javac.includes.binary" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build\test\classes\uv\fei\tutorias\bussinesslogic\SesionTutoriaDAOTest.class" />
+    <property name="javac.includes.binary" value="C:\Users\DMS19\Desktop\SistemaTutorias\build\test\classes\uv\fei\tutorias\bussinesslogic\PeriodoDAOTest.class" />
     <property name="ant.home" value="C:\Program Files\NetBeans-13\netbeans\extide\ant" />
     <property name="libs.junit_4.src" value="C:\Program Files\NetBeans-13\netbeans\platform\docs\junit-4.13.2-sources.jar" />
     <property name="javafx.run.height" value="600" />
@@ -136,7 +136,7 @@
     <property name="libs.absolutelayout.maven-pom" value="" />
     <property name="ant.file.type.SistemaTutorias-impl" value="file" />
     <property name="ant.java.version" value="1.8" />
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_202\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\DMS19\AppData\Local\Microsoft\WindowsApps;;." />
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_202\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\DMS19\AppData\Local\Microsoft\WindowsApps;;." />
     <property name="javadoc.author" value="false" />
     <property name="libs.metro.maven-pom" value="" />
     <property name="java.util.logging.config.class" value="org.netbeans.core.startup.TopLogging" />
@@ -147,7 +147,7 @@
     <property name="libs.spring-framework500.javadoc" value="" />
     <property name="libs.graaljs.src" value="" />
     <property name="sun.arch.data.model" value="64" />
-    <property name="basedir" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias" />
+    <property name="basedir" value="C:\Users\DMS19\Desktop\SistemaTutorias" />
     <property name="libs.jpa20-persistence.maven-pom" value="" />
     <property name="jar.compress" value="false" />
     <property name="libs.javaee-web-api-7.0.classpath" value="C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\javaee-web-api-7.0.jar" />
@@ -190,7 +190,7 @@
     <property name="libs.spring-webmvc4.0.maven-pom" value="" />
     <property name="libs.spring-framework300.src" value="" />
     <property name="libs.jstl.src" value="" />
-    <property name="empty.dir" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build\empty" />
+    <property name="empty.dir" value="C:\Users\DMS19\Desktop\SistemaTutorias\build\empty" />
     <property name="javafx.deploy.backgroundupdate" value="false" />
     <property name="javafx.disable.concurrent.runs" value="false" />
     <property name="test.binarytestincludes" value="" />
@@ -237,7 +237,7 @@
     <property name="libs.hamcrest.maven-pom" value="" />
     <property name="libs.junit_5.classpath" value="C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\junit-jupiter-api-5.6.0.jar;C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\junit-jupiter-params-5.6.0.jar;C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\junit-jupiter-engine-5.6.0.jar" />
     <property name="javac.compilerargs" value="" />
-    <property name="ant.file" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build.xml" />
+    <property name="ant.file" value="C:\Users\DMS19\Desktop\SistemaTutorias\build.xml" />
     <property name="libs.jsf12.classpath" value="C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\jsf-1_2\jsf-api.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\jsf-1_2\jsf-impl.jar" />
     <property name="libs.jstl.maven-pom" value="" />
     <property name="libs.restapi.maven-pom" value="" />
@@ -264,7 +264,7 @@
     <property name="libs.graaljs.classpath" value="C:\Program Files\NetBeans-13\netbeans\webcommon\modules\ext\js-20.3.0.jar;C:\Program Files\NetBeans-13\netbeans\webcommon\modules\ext\js-launcher-20.3.0.jar;C:\Program Files\NetBeans-13\netbeans\webcommon\modules\ext\regex-20.3.0.jar;C:\Program Files\NetBeans-13\netbeans\webcommon\modules\ext\icu4j-67.1.jar;C:\Program Files\NetBeans-13\netbeans\ide\modules\ext\graal-sdk-20.3.0.jar;C:\Program Files\NetBeans-13\netbeans\ide\modules\ext\launcher-common-20.3.0.jar;C:\Program Files\NetBeans-13\netbeans\ide\modules\ext\truffle-api-20.3.0.jar" />
     <property name="libs.hamcrest.javadoc" value="" />
     <property name="debug.classpath" value="C:\Program Files (x86)\MySQL\Connector J 8.0\mysql-connector-java-8.0.29.jar:C:\Program Files\Java\jdk1.8.0_202\jre/lib/javaws.jar:C:\Program Files\Java\jdk1.8.0_202\jre/lib/deploy.jar:C:\Program Files\Java\jdk1.8.0_202\jre/lib/plugin.jar:C:\Users\DMS19\Downloads\log4j-1.2.15.jar\log4j-1.2.15.jar:build/classes" />
-    <property name="ant.file.SistemaTutorias-impl" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\nbproject\build-impl.xml" />
+    <property name="ant.file.SistemaTutorias-impl" value="C:\Users\DMS19\Desktop\SistemaTutorias\nbproject\build-impl.xml" />
     <property name="javac.external.vm" value="true" />
     <property name="javadoc.private" value="false" />
     <property name="libs.jakartaee-api-8.0.src" value="" />
@@ -322,14 +322,14 @@
     <property name="libs.eclipselinkmodelgen.javadoc" value="" />
     <property name="libs.metro.javadoc" value="C:\Program Files\NetBeans-13\netbeans\enterprise\docs\webservices-api-javadoc.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\docs\webservices-extra-javadoc.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\docs\webservices-extra-api-javadoc.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\docs\webservices-rt-javadoc.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\docs\webservices-tools-javadoc.jar" />
     <property name="libs.struts.maven-pom" value="" />
-    <property name="ant.file.jfx-impl" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\nbproject\jfx-impl.xml" />
-    <property name="jnidispatch.path" value="C:\Users\DMS19\AppData\Local\Temp\jna-65174674\jna8468645245599592094.dll" />
+    <property name="ant.file.jfx-impl" value="C:\Users\DMS19\Desktop\SistemaTutorias\nbproject\jfx-impl.xml" />
+    <property name="jnidispatch.path" value="C:\Users\DMS19\AppData\Local\Temp\jna-65174674\jna6109135244865325727.dll" />
     <property name="netbeans.home+have.tests" value="true" />
     <property name="javafx.deploy.adddesktopshortcut" value="false" />
     <property name="annotation.processing.processor.options" value="" />
     <property name="libs.testng.maven-pom" value="" />
     <property name="libs.jaxb.src" value="" />
-    <property name="work.dir" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias" />
+    <property name="work.dir" value="C:\Users\DMS19\Desktop\SistemaTutorias" />
     <property name="libs.jaxb.classpath" value="C:\Program Files\NetBeans-13\netbeans\ide\modules\ext\jaxb\jaxb-impl.jar;C:\Program Files\NetBeans-13\netbeans\ide\modules\ext\jaxb\jaxb-xjc.jar;C:\Program Files\NetBeans-13\netbeans\ide\modules\ext\jaxb\activation.jar;C:\Program Files\NetBeans-13\netbeans\ide\modules\ext\jaxb\api\jaxb-api.jar" />
     <property name="compile.on.save.unsupported.javafx" value="true" />
     <property name="do.depend" value="false" />
@@ -349,8 +349,8 @@
     <property name="junit.forkmode" value="perTest" />
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_202\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_202\jre\classes" />
     <property name="javac.target" value="1.8" />
-    <property name="built-jar.properties" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build\built-jar.properties" />
-    <property name="ant.file.SistemaTutorias" value="C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build.xml" />
+    <property name="built-jar.properties" value="C:\Users\DMS19\Desktop\SistemaTutorias\build\built-jar.properties" />
+    <property name="ant.file.SistemaTutorias" value="C:\Users\DMS19\Desktop\SistemaTutorias\build.xml" />
     <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="javafx.deploy.permissionselevated" value="false" />
     <property name="src.dir" value="src" />
@@ -400,7 +400,7 @@
     <property name="libs.metro.classpath" value="C:\Program Files\NetBeans-13\netbeans\ide\modules\ext\jaxb\activation.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\metro\webservices-api.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\metro\webservices-extra-api.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\metro\webservices-extra.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\metro\webservices-rt.jar;C:\Program Files\NetBeans-13\netbeans\enterprise\modules\ext\metro\webservices-tools.jar" />
     <property name="libs.restlib.maven-pom" value="" />
     <property name="apple.laf.useScreenMenuBar" value="true" />
-    <property name="java.class.path" value="C:\Program Files (x86)\MySQL\Connector J 8.0\mysql-connector-java-8.0.29.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\plugin.jar;C:\Users\DMS19\Downloads\log4j-1.2.15.jar\log4j-1.2.15.jar;C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build\classes;C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\junit-4.13.2.jar;C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\hamcrest-core-1.3.jar;C:\Users\DMS19\Downloads\ProyectoFinal-PCS\ProyectoFinal-PCS\SistemaTutorias\build\test\classes;C:\Program Files\NetBeans-13\netbeans\extide\ant\lib\ant-launcher.jar;C:\Program Files\NetBeans-13\netbeans\extide\ant\lib\ant.jar;C:\Program Files\NetBeans-13\netbeans\extide\ant\lib\ant-junit.jar;C:\Program Files\NetBeans-13\netbeans\extide\ant\lib\ant-junit4.jar" />
+    <property name="java.class.path" value="C:\Program Files (x86)\MySQL\Connector J 8.0\mysql-connector-java-8.0.29.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\plugin.jar;C:\Users\DMS19\Downloads\log4j-1.2.15.jar\log4j-1.2.15.jar;C:\Users\DMS19\Desktop\SistemaTutorias\build\classes;C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\junit-4.13.2.jar;C:\Program Files\NetBeans-13\netbeans\platform\modules\ext\hamcrest-core-1.3.jar;C:\Users\DMS19\Desktop\SistemaTutorias\build\test\classes;C:\Program Files\NetBeans-13\netbeans\extide\ant\lib\ant-launcher.jar;C:\Program Files\NetBeans-13\netbeans\extide\ant\lib\ant.jar;C:\Program Files\NetBeans-13\netbeans\extide\ant\lib\ant-junit.jar;C:\Program Files\NetBeans-13\netbeans\extide\ant\lib\ant-junit4.jar" />
     <property name="libs.absolutelayout.src" value="" />
     <property name="libs.jakartaee-api-9.0.maven-pom" value="" />
     <property name="libs.jpa20-persistence.classpath" value="C:\Program Files\NetBeans-13\netbeans\java\modules\ext\eclipselink\javax.persistence-2.2.1.jar" />
@@ -458,11 +458,11 @@
     <property name="javafx.deploy.installpermanently" value="false" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans-13\netbeans\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="uv.fei.tutorias.bussinesslogic.SesionTutoriaDAOTest" name="testRegistrarSesionTutoria" time="3.238" />
-  <system-out><![CDATA[registrarSesionTutoria
+  <testcase classname="uv.fei.tutorias.bussinesslogic.PeriodoDAOTest" name="testRegistrarPeriodo" time="4.11" />
+  <system-out><![CDATA[registrarPeriodo
 1 Fila insertada 
-2 2022-08-12
-2 2022-08-12
+2022-03-09 2022-03-09
+2022-03-09 2022-03-09
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

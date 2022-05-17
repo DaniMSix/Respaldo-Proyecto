@@ -6,20 +6,14 @@ package uv.gui.controladores;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
  *
  * @author DMS19
  */
-public class RegistrarController implements Initializable {
-
-    @FXML
-    private TextField txNombre;
+public class RegistrarFechasDeCierreParaLaEntregaDelReporteController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -28,9 +22,5 @@ public class RegistrarController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void enviar(ActionEvent event) {
-    }
     
 }

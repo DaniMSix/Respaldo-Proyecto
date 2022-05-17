@@ -1,54 +1,76 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package uv.gui.controladores;
 
-import java.net.URL;
 import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
+import uv.fei.tutorias.bussinesslogic.PeriodoDAO;
 import uv.fei.tutorias.bussinesslogic.SesionTutoriaDAO;
+import uv.fei.tutorias.domain.Periodo;
 import uv.fei.tutorias.domain.SesionTutoria;
 
-/**
- * FXML Controller class
- *
- * @author DMS19
- */
-public class RegistrarFechasDeSesionDeTutoriaController implements Initializable {
+public class RegistrarFechasDeSesionDeTutoriaController {
 
     @FXML
-    private DatePicker datePicker;
-    @FXML
-    private TextField tfPrimero;
-    
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    private DatePicker dpPeriodoFin;
 
     @FXML
-    private void enviar(ActionEvent event) {
-        SesionTutoriaDAO SesionTutoriaDAO = new SesionTutoriaDAO();
-        SesionTutoria nuevaSesionTutoria = new SesionTutoria();
-                
-        String date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                
-        nuevaSesionTutoria.setNumTutoria(tfPrimero.getText());
-        nuevaSesionTutoria.setFechaTutoria(date);
-        SesionTutoriaDAO.registrarSesionTutoria(nuevaSesionTutoria);
+    private DatePicker dpPeriodoInicio;
+
+    @FXML
+    private DatePicker dpPrimeraSesion;
+
+    @FXML
+    private DatePicker dpSegundaSesion;
+
+    @FXML
+    private DatePicker dpTerceraSesion;
+    @FXML
+    private ComboBox cbNumeroTutoria1;
+    @FXML
+    private ComboBox cbNumeroTutoria2;
+    @FXML
+    private ComboBox cbNumeroTutoria3;
+
+    @FXML
+    void CancelarRegistro(ActionEvent event) {
+
+    }
+
+    @FXML
+    void enviar(ActionEvent event) {
         
+        // Registramos el periodo
+        PeriodoDAO periodoDao = new PeriodoDAO();
+        Periodo nuevoPeriodo = new Periodo();
+        
+        String periodoInicio = dpPeriodoInicio.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String periodoFin = dpPeriodoFin.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        
+        nuevoPeriodo.setFechaInicio(periodoInicio);
+        nuevoPeriodo.setFechaFin(periodoFin);
+        
+        periodoDao.registrarPeriodo(nuevoPeriodo);
+        
+        
+        // Registramos las fechas de sesión
+        registrarSesion(dpPrimeraSesion);
+        registrarSesion(dpSegundaSesion);
+        registrarSesion(dpTerceraSesion);
             
         JOptionPane.showMessageDialog(null, "Fecha registrada");
     }
     
+    public void registrarSesion(DatePicker fechaTutoria){
+        SesionTutoriaDAO SesionTutoriaDAO = new SesionTutoriaDAO();
+        SesionTutoria nuevaSesionTutoria = new SesionTutoria();
+                
+        String fecha = fechaTutoria.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                
+        nuevaSesionTutoria.setFechaTutoria(fecha);
+        SesionTutoriaDAO.registrarSesionTutoria(nuevaSesionTutoria);
+    }
+
 }

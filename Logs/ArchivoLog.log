@@ -74,3 +74,5 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 2022-05-11 17:22:20 FATAL TutorDAO:72 - java.sql.SQLException: Parameter index out of range (2 > number of parameters, which is 1).
 2022-05-11 17:31:46 ERROR TutorDAO:36 - java.sql.SQLException: Parameter index out of range (3 > number of parameters, which is 2).
 2022-05-11 17:31:46 FATAL TutorDAO:72 - java.sql.SQLException: Parameter index out of range (2 > number of parameters, which is 1).
+2022-05-17 06:43:30 FATAL PeriodoDAO:105 - java.sql.SQLException: No se encontraron periodos
+2022-05-17 06:49:23 FATAL PeriodoDAO:105 - java.sql.SQLException: No se encontraron periodos
