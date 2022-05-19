@@ -3,7 +3,7 @@ package uv.fei.tutorias.domain;
 import java.util.Objects;
 
 public class SesionTutoria {
-    private int  idSesionTutoria;
+    private int idSesionTutoria;
     private String numTutoria;
     private String fechaTutoria;
     private String fechaCierreReportes;

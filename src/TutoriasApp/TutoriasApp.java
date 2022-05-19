@@ -6,30 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Usuario
- */
+
 public class TutoriasApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/RegistrarFechasDeSesionDeTutoria.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/RegistrarFechasDeSesionDeTutoria.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/ConsultarEstudiante.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/RegistrarTutorAcademicoGUI.fxml"));
-        //RegistrarFechasDeSesionDeTutoria
-        
-        /*
-        SesionTutoriaDAO SesionTutoriaDAO = new SesionTutoriaDAO();
-                SesionTutoria nuevaSesionTutoria = new SesionTutoria();
-                
-                //String date = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                
-                nuevaSesionTutoria.setFechaCierreReportes(date.getValue().toString());
-                SesionTutoriaDAO.registrarSesionTutoria(nuevaSesionTutoria);
-            
-                JOptionPane.showMessageDialog(null, "Fecha registrada");
-        */
+        Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/RegistrarFechasDeCierreParaLaEntregaDelReporte.fxml"));
         
         Scene scene = new Scene(root);
         

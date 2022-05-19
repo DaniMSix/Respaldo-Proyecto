@@ -19,6 +19,8 @@ public interface ISesionTutoriaDAO {
     public int registrarCierreDeReporte(SesionTutoria sesionTutoria);
 
     public int eliminarSesionTutoriaPorId(int idTutoria);
+    
+    public List<SesionTutoria> consultarTutoriaPorId(int idTutoriaBuscada);
 }
 
 

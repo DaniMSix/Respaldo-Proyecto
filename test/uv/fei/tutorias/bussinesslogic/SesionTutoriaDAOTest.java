@@ -111,12 +111,27 @@ public class SesionTutoriaDAOTest {
     @Test
     public void testRegistrarCierreDeReporte() {
         System.out.println("registrarCierreDeReporte");
-        SesionTutoria sesionTutoria = null;
-        SesionTutoriaDAO instance = new SesionTutoriaDAO();
-        int expResult = 0;
-        int result = instance.registrarCierreDeReporte(sesionTutoria);
+        SesionTutoriaDAO sesionTutoriaDAO = new SesionTutoriaDAO();
+        SesionTutoria nuevaSesionTutoria = new SesionTutoria();
+        nuevaSesionTutoria.setFechaCierreReportes("2022-06-05");
+        
+        sesionTutoriaDAO.registrarCierreDeReporte(nuevaSesionTutoria);
+
+        int idTutoriaBuscada = 55;
+        ArrayList<SesionTutoria> expResult = new ArrayList<>();
+        SesionTutoria tutoriaEsperada = new SesionTutoria();
+        tutoriaEsperada.setFechaCierreReportes("2022-06-05");
+        
+        expResult.add(tutoriaEsperada);
+        ArrayList<SesionTutoria> result = (ArrayList<SesionTutoria>) sesionTutoriaDAO.consultarTutoriaPorId(idTutoriaBuscada);
+        
+        for(SesionTutoria sesionTutoria : result){
+            System.out.println(String.format("%s",sesionTutoria.getFechaCierreReportes()));
+        }
+        for(SesionTutoria sesionTutoria : expResult){
+            System.out.println(String.format("%s", sesionTutoria.getFechaCierreReportes()));
+        }
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 }

@@ -45,7 +45,7 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
 
     @Override
     public List<SesionTutoria> consultarSesionesTutoriaPorNumero(String tutoriaBuscada) {
-        ArrayList<SesionTutoria> tutores= new ArrayList<>();
+        ArrayList<SesionTutoria> sesiones= new ArrayList<>();
         DataBaseConnection dataBaseConnection = new DataBaseConnection();
         try(Connection connection=dataBaseConnection.getConnection()){
             String query="SELECT * FROM tutorias WHERE NumeroTutoria = ?";
@@ -63,7 +63,7 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
                     SesionTutoria sesionTutoria = new SesionTutoria();
                     sesionTutoria.setNumTutoria(numTutoria);
                     sesionTutoria.setFechaTutoria(fechaTutoria);
-                    tutores.add(sesionTutoria);
+                    sesiones.add(sesionTutoria);
                 }while (resultSet.next());
             }
         }catch (SQLException ex) {
@@ -74,7 +74,7 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
             Throwable t = ex.getCause();
                 System.out.println("Causa: " + t + "\n");
         }
-        return tutores;
+        return sesiones;
     }
 
     @Override
@@ -85,13 +85,48 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
             String fechaCierreReportes = sesionTutoria.getFechaCierreReportes();
             String query = "INSERT INTO tutorias (FechaCierreReportes) VALUES (?)";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(3, fechaCierreReportes);
+            statement.setString(1, fechaCierreReportes);
             filasInsertadas = statement.executeUpdate();
             System.out.println(filasInsertadas + " Fila insertada ");
+            
         } catch (SQLException ex) {
             log.error(ex);
         }
         return filasInsertadas;
+    }
+
+    @Override
+    public List<SesionTutoria> consultarTutoriaPorId(int idTutoriaBuscada) {
+        ArrayList<SesionTutoria> sesiones= new ArrayList<>();
+        DataBaseConnection dataBaseConnection = new DataBaseConnection();
+        try(Connection connection=dataBaseConnection.getConnection()){
+            String query="SELECT * FROM tutorias WHERE IdTutoria = ?";
+            PreparedStatement statement=connection.prepareStatement(query);
+            statement.setInt(1, idTutoriaBuscada);
+            ResultSet resultSet=statement.executeQuery();
+            if (!resultSet.next()){
+                throw new SQLException("No se encontraron sesiones de tutorias registradas");
+            }else{
+                //int idSesionTutoria;
+                String fechaCierreReportes;
+                do {
+                    //idSesionTutoria = resultSet.getInt("IdTutoria");
+                    fechaCierreReportes = resultSet.getString("FechaCierreReportes");
+                    SesionTutoria sesionTutoria = new SesionTutoria();
+                    //sesionTutoria.setIdSesionTutoria(idSesionTutoria);
+                    sesionTutoria.setFechaCierreReportes(fechaCierreReportes);
+                    sesiones.add(sesionTutoria);
+                }while (resultSet.next());
+            }
+        }catch (SQLException ex) {
+            log.fatal(ex);
+            System.out.println("Código de Error: " + ex.getErrorCode() + "\n" +
+                        "SLQState: " + ex.getSQLState() + "\n" +
+                        "Mensaje: " + ex.getMessage() + "\n");
+            Throwable t = ex.getCause();
+                System.out.println("Causa: " + t + "\n");
+        }
+        return sesiones;
     }
     
     
