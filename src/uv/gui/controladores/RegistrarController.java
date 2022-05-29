@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package uv.gui.controladores;
 
 import java.net.URL;
@@ -11,8 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import uv.fei.tutorias.bussinesslogic.PeriodoDAO;
 import uv.fei.tutorias.bussinesslogic.SesionTutoriaDAO;
 import uv.fei.tutorias.domain.Periodo;
@@ -23,42 +25,33 @@ import uv.fei.tutorias.domain.SesionTutoria;
  *
  * @author DMS19
  */
-public class RegistrarFechasDeCierreParaLaEntregaDelReporteController implements Initializable {
+public class RegistrarController implements Initializable {
 
+    @FXML
+    private ComboBox cbPeriodoInicio;
+    @FXML
+    private ComboBox cbPeriodoFin;
     @FXML
     private ComboBox cbNumTutoria1;
-
     @FXML
     private ComboBox cbNumTutoria2;
-
     @FXML
     private ComboBox cbNumTutoria3;
-
-
     @FXML
     private DatePicker dpPrimeraSesion;
-
     @FXML
     private DatePicker dpSegundaSesion;
-
     @FXML
     private DatePicker dpTerceraSesion;
 
-    @FXML
-    private AnchorPane panelFechaEntregaReporte;
-
-
-    Stage stage;
     
     ObservableList<String> opcionesComboPeriodoInicio;
     
     ObservableList<String> opcionesComboPeriodoFin;
     
-    @FXML
-    private ComboBox cbPeriodoInicio;
-    @FXML
-    private ComboBox cbPeriodoFin;
-    
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.cargarItems(cbNumTutoria1);
@@ -68,15 +61,9 @@ public class RegistrarFechasDeCierreParaLaEntregaDelReporteController implements
     }    
 
     @FXML
-    private void cancelarRegistro(ActionEvent event) {
+    private void enviarInformacion(ActionEvent event) {
         
-    }
-
-    @FXML
-    private void enviarInformacion(ActionEvent event){
-        
-            
-            Periodo periodo = new Periodo();
+        Periodo periodo = new Periodo();
             PeriodoDAO periodoDao = new PeriodoDAO();
             
             String periodoInicio = cbPeriodoInicio.getValue().toString();
@@ -103,10 +90,10 @@ public class RegistrarFechasDeCierreParaLaEntregaDelReporteController implements
         String fecha = fechaReporte.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         
         
-        nuevaSesionTutoria.setFechaCierreReportes(fecha);
-        nuevaSesionTutoria.setNumTutoria(numeroTutoria.getValue().toString());
-        SesionTutoriaDAO.registrarFechaDeCierreDeReporte(nuevaSesionTutoria, idPeriodoRegistrar);
         
+        nuevaSesionTutoria.setNumTutoria(numeroTutoria.getValue().toString());
+        nuevaSesionTutoria.setFechaCierreReportes(fecha);
+        SesionTutoriaDAO.registrarFechaDeCierreDeReporte(nuevaSesionTutoria, idPeriodoRegistrar);
         
     }
     
@@ -139,4 +126,5 @@ public class RegistrarFechasDeCierreParaLaEntregaDelReporteController implements
         cbPeriodoFin.setItems(opcionesComboPeriodoFin);
 
     }
+    
 }

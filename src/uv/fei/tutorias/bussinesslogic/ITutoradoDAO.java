@@ -10,6 +10,8 @@ public interface ITutoradoDAO {
     public ArrayList<Tutorado> buscarTutoradoPorMatricula(String matriculaBuscada);
 
     public ArrayList<Tutorado> buscarTutoradoPorTutor(String cuentaUV);
+    
+    public ArrayList<Tutorado> buscarTutoradoPorNombre(String nombre);
 
     public void eliminarTutoradoPorMatricula(String matriculaEliminada);
 

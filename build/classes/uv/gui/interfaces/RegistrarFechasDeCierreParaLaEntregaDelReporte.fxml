@@ -7,19 +7,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="panelFechaEntregaReporte" prefHeight="467.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uv.gui.controladores.RegistrarFechasDeCierreParaLaEntregaDelReporteController">
+<AnchorPane id="AnchorPane" fx:id="panelFechaEntregaReporte" prefHeight="467.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uv.gui.controladores.RegistrarFechasDeCierreParaLaEntregaDelReporteController">
    <children>
       <Text layoutX="23.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el periodo escolar">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text layoutX="23.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo escolar:">
+      <Text layoutX="23.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha inicio:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <ComboBox fx:id="cbPeriodo" layoutX="135.0" layoutY="63.0" prefHeight="25.0" prefWidth="158.0" />
       <Text layoutX="23.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecciones las fechas correspondientes de cierre para la entrega del reporte:">
          <font>
             <Font size="14.0" />
@@ -38,5 +37,12 @@
       <ComboBox fx:id="cbNumTutoria1" layoutX="38.0" layoutY="211.0" prefHeight="25.0" prefWidth="85.0" />
       <ComboBox fx:id="cbNumTutoria2" layoutX="38.0" layoutY="259.0" prefHeight="25.0" prefWidth="85.0" />
       <ComboBox fx:id="cbNumTutoria3" layoutX="38.0" layoutY="308.0" prefHeight="25.0" prefWidth="85.0" />
+      <ComboBox fx:id="cbPeriodoInicio" layoutX="106.0" layoutY="64.0" prefHeight="25.0" prefWidth="130.0" />
+      <Text layoutX="260.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha fin:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="cbPeriodoFin" layoutX="326.0" layoutY="64.0" prefHeight="25.0" prefWidth="130.0" />
    </children>
 </AnchorPane>

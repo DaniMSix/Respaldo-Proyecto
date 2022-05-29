@@ -1,6 +1,8 @@
 package uv.gui.controladores;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -8,8 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.AnchorPane;
@@ -51,23 +51,17 @@ public class RegistrarFechasDeSesionDeTutoriaController implements Initializable
 
     @FXML
     void CancelarRegistro(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Cancelar");
-        alert.setHeaderText("Confirmar cancelar registro");
-        alert.setContentText("¿Esta seguro de que desea cancelar el registro?");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            stage = (Stage) panelFechaSesionTutoria.getScene().getWindow();
-            stage.close();
-        }
-
+        
+    }
+    
+    public String convertirDatePickerToString(DatePicker datepicker){
+        String nuevoString = datepicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return nuevoString;
     }
 
     @FXML
-    void enviar(ActionEvent event) {
+    void enviar(ActionEvent event){
         
-        //if (dpPeriodoFin.getValue().val() || dpPeriodoInicio.getValue().equals("") || dpPrimeraSesion.getValue().equals("") || dpSegundaSesion.getValue().equals("") || dpTerceraSesion.getValue().equals("") ) {
-        //} else{
         // Registramos el periodo
         PeriodoDAO periodoDao = new PeriodoDAO();
         Periodo nuevoPeriodo = new Periodo();
@@ -80,26 +74,21 @@ public class RegistrarFechasDeSesionDeTutoriaController implements Initializable
         
         periodoDao.registrarPeriodo(nuevoPeriodo);
         
+        // Registramos el idPeriodo
+        int idPeriodoRegistrar = periodoDao.buscarFechasDelPeriodo(periodoInicio, periodoFin);
         
-        // Registramos las fechas de sesión
-        registrarSesion(dpPrimeraSesion, cbNumeroTutoria1);
-        registrarSesion(dpSegundaSesion, cbNumeroTutoria2);
-        registrarSesion(dpTerceraSesion, cbNumeroTutoria3);
-            
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Información registrada");
-        alert.setHeaderText("Se a registrado con éxito la información");
-        alert.showAndWait();
+        
+        
+        // Registramos las fechas de sesión 
+        registrarSesion(dpPrimeraSesion, cbNumeroTutoria1, idPeriodoRegistrar);
+        registrarSesion(dpSegundaSesion, cbNumeroTutoria2, idPeriodoRegistrar);
+        registrarSesion(dpTerceraSesion, cbNumeroTutoria3, idPeriodoRegistrar);
+        
+        
+}
 
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            //Cambiar por menú principal
-            stage = (Stage) panelFechaSesionTutoria.getScene().getWindow();
-            stage.close();
-        }
-        
-    }
     
-    public void registrarSesion(DatePicker fechaTutoria, ComboBox numeroTutoria){
+    public void registrarSesion(DatePicker fechaTutoria, ComboBox numeroTutoria, int idPeriodoRegistrar){
         SesionTutoriaDAO SesionTutoriaDAO = new SesionTutoriaDAO();
         SesionTutoria nuevaSesionTutoria = new SesionTutoria();
                 
@@ -107,7 +96,9 @@ public class RegistrarFechasDeSesionDeTutoriaController implements Initializable
         
         nuevaSesionTutoria.setFechaTutoria(fecha);
         nuevaSesionTutoria.setNumTutoria(numeroTutoria.getValue().toString());
+        nuevaSesionTutoria.setIdPeriodo(idPeriodoRegistrar);
         SesionTutoriaDAO.registrarSesionTutoria(nuevaSesionTutoria);
+        
     }
 
     @Override

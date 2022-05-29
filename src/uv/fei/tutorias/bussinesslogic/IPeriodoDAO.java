@@ -9,6 +9,8 @@ public interface IPeriodoDAO {
     
     public List<Periodo> consultarPeriodoTodosLosPeriodos();
     
+    public List<Periodo> consultarPeriodoFechaInicio();
+    
     public List<Periodo> consultarPeriodoPorId(int idPeriodoBuscado);
     
     public int registrarPeriodo(Periodo periodo);
@@ -16,4 +18,8 @@ public interface IPeriodoDAO {
     public int eliminarPeriodoId(int idPeriodo);
 
     public int actualizarPeriodo(Periodo periodo);
+    
+    public int buscarFechasDelPeriodo(String fechaInicio, String fechaFin);
+    
+    public boolean comprobarSiExistePeriodo(String fechaInicio, String fechaFin);
 }

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
+
 package uv.fei.tutorias.bussinesslogic;
 
 import java.util.ArrayList;
@@ -44,16 +41,16 @@ public class SesionTutoriaDAOTest {
         System.out.println("registrarSesionTutoria");
         SesionTutoriaDAO sesionTutoriaDAO = new SesionTutoriaDAO();
         SesionTutoria nuevaSesionTutoria = new SesionTutoria();
-        nuevaSesionTutoria.setNumTutoria("2");
-        nuevaSesionTutoria.setFechaTutoria("2022-08-12");
+        nuevaSesionTutoria.setNumTutoria("4");
+        nuevaSesionTutoria.setFechaTutoria("2022-01-12");
         
         sesionTutoriaDAO.registrarSesionTutoria(nuevaSesionTutoria);
 
-        String tutoriaBuscada = "2";
+        String tutoriaBuscada = "4";
         ArrayList<SesionTutoria> expResult = new ArrayList<>();
         SesionTutoria tutoriaEsperada = new SesionTutoria();
-        tutoriaEsperada.setNumTutoria("2");
-        tutoriaEsperada.setFechaTutoria("2022-08-12");
+        tutoriaEsperada.setNumTutoria("4");
+        tutoriaEsperada.setFechaTutoria("2022-01-12");
         
         expResult.add(tutoriaEsperada);
         ArrayList<SesionTutoria> result = (ArrayList<SesionTutoria>) sesionTutoriaDAO.consultarSesionesTutoriaPorNumero(tutoriaBuscada);
@@ -65,17 +62,6 @@ public class SesionTutoriaDAOTest {
             System.out.println(String.format("%s %s", sesionTutoria.getNumTutoria(), sesionTutoria.getFechaTutoria()));
         }
         assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testEliminarSesionTutoriaPorId() {
-        System.out.println("eliminarSesionTutoriaPorId");
-        int idTutoria = 0;
-        SesionTutoriaDAO instance = new SesionTutoriaDAO();
-        int expResult = 0;
-        int result = instance.eliminarSesionTutoriaPorId(idTutoria);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
 /*
     @Test
@@ -113,13 +99,15 @@ public class SesionTutoriaDAOTest {
         System.out.println("registrarCierreDeReporte");
         SesionTutoriaDAO sesionTutoriaDAO = new SesionTutoriaDAO();
         SesionTutoria nuevaSesionTutoria = new SesionTutoria();
+        nuevaSesionTutoria.setNumTutoria("4");
         nuevaSesionTutoria.setFechaCierreReportes("2022-06-05");
         
-        sesionTutoriaDAO.registrarCierreDeReporte(nuevaSesionTutoria);
+        sesionTutoriaDAO.registrarFechaDeCierreDeReporte(nuevaSesionTutoria, 1);
 
-        int idTutoriaBuscada = 55;
+        int idTutoriaBuscada = 91;
         ArrayList<SesionTutoria> expResult = new ArrayList<>();
         SesionTutoria tutoriaEsperada = new SesionTutoria();
+        tutoriaEsperada.setNumTutoria("4");
         tutoriaEsperada.setFechaCierreReportes("2022-06-05");
         
         expResult.add(tutoriaEsperada);

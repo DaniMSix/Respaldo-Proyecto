@@ -57,9 +57,9 @@ public class TutoradoDAO implements ITutoradoDAO{
         ArrayList<Tutorado> tutorados = new ArrayList<>();
         DataBaseConnection dataBaseConnection = new DataBaseConnection();
         try(Connection connection=dataBaseConnection.getConnection()){
-            String query="Select * from tutorados where Matricula = ";
+            String query="Select * from tutorados where Matricula = ?";
             PreparedStatement statement=connection.prepareStatement(query);
-            statement.setString(1,"'" + matriculaBuscada + "'");
+            statement.setString(1, matriculaBuscada);
             ResultSet resultSet=statement.executeQuery();
             if (!resultSet.next()){
                 throw new SQLException("No se encontraron tutorados");
@@ -216,6 +216,44 @@ public class TutoradoDAO implements ITutoradoDAO{
                 }while (resultSet.next());
             }
         }catch (SQLException ex) {
+            log.fatal(ex);
+        }
+        return tutorados;
+    }
+
+    @Override
+    public ArrayList<Tutorado> buscarTutoradoPorNombre(String nombreBuscado) {
+        ArrayList<Tutorado> tutorados = new ArrayList<>();
+        DataBaseConnection dataBaseConnection = new DataBaseConnection();
+        try(Connection connection=dataBaseConnection.getConnection()){
+            String query="Select * from tutorados where Matricula = ?";
+            PreparedStatement statement=connection.prepareStatement(query);
+            statement.setString(1,"'" + nombreBuscado + "'");
+            ResultSet resultSet=statement.executeQuery();
+            if (!resultSet.next()){
+                throw new SQLException("No se encontraron tutorados");
+            }else{
+                String matricula;
+                String nombre;
+                String apellidoPaterno;
+                String apellidoMaterno;
+                String correo;
+                do {
+                    matricula = resultSet.getString("Matricula");
+                    nombre = resultSet.getString("Nombre");
+                    apellidoPaterno = resultSet.getString("ApellidoPaterno");
+                    apellidoMaterno = resultSet.getString("ApellidoMaterno");
+                    correo = resultSet.getString("Correo");
+                    Tutorado tutoradoBuscado = new Tutorado();
+                    tutoradoBuscado.setMatricula(matricula);
+                    tutoradoBuscado.setNombre(nombre);
+                    tutoradoBuscado.setApellidoPaterno(apellidoPaterno);
+                    tutoradoBuscado.setApellidoMaterno(apellidoMaterno);
+                    tutoradoBuscado.setCorreo(correo);
+                    tutorados.add(tutoradoBuscado);
+                }while (resultSet.next());
+            }
+        } catch (SQLException ex) {
             log.fatal(ex);
         }
         return tutorados;

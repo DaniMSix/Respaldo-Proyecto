@@ -12,9 +12,10 @@ public class TutoriasApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/RegistrarFechasDeSesionDeTutoria.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/ConsultarEstudiante.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/ConsultarEstudiante.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/RegistrarTutorAcademicoGUI.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/RegistrarFechasDeCierreParaLaEntregaDelReporte.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/RegistrarFechasDeCierreParaLaEntregaDelReporte.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/uv/gui/interfaces/Registrar.fxml"));
         
         Scene scene = new Scene(root);
         

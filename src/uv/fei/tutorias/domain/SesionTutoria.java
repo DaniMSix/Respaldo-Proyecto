@@ -7,6 +7,15 @@ public class SesionTutoria {
     private String numTutoria;
     private String fechaTutoria;
     private String fechaCierreReportes;
+    private int idPeriodo;
+
+    public int getIdPeriodo() {
+        return idPeriodo;
+    }
+
+    public void setIdPeriodo(int idPeriodo) {
+        this.idPeriodo = idPeriodo;
+    }
 
     public int getIdSesionTutoria() {
         return idSesionTutoria;

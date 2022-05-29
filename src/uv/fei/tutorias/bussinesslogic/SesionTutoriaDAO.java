@@ -16,7 +16,7 @@ import uv.fei.tutorias.domain.SesionTutoria;
  */
 public class SesionTutoriaDAO implements ISesionTutoriaDAO {
     
-    final static Logger log = Logger.getLogger(TutorDAO.class);
+    final static Logger log = Logger.getLogger(SesionTutoriaDAO.class);
 
     
     @Override
@@ -26,10 +26,12 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
         try(Connection connection=dataBaseConnection.getConnection()){
             String fechaTutoria = sesionTutoria.getFechaTutoria();
             String numTutoria = sesionTutoria.getNumTutoria();
-            String query = "INSERT INTO tutorias (NumeroTutoria, FechaTutoria) VALUES (?, ?)";
+            int idPeriodo = sesionTutoria.getIdPeriodo();
+            String query = "INSERT INTO tutorias (NumeroTutoria, FechaTutoria, IdPeriodo) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, numTutoria);
             statement.setString(2, fechaTutoria);
+            statement.setInt(3, idPeriodo);
             filasInsertadas = statement.executeUpdate();
             System.out.println(filasInsertadas + " Fila insertada ");
         } catch (SQLException ex) {
@@ -38,10 +40,7 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
         return filasInsertadas;
     }
 
-    @Override
-    public int eliminarSesionTutoriaPorId(int idTutoria) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
     @Override
     public List<SesionTutoria> consultarSesionesTutoriaPorNumero(String tutoriaBuscada) {
@@ -78,17 +77,21 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
     }
 
     @Override
-    public int registrarCierreDeReporte(SesionTutoria sesionTutoria) {
+    public int registrarFechaDeCierreDeReporte(SesionTutoria sesionTutoria, int idTutoria) {
+
         DataBaseConnection dataBaseConnection = new DataBaseConnection();
         int filasInsertadas = 0;
         try(Connection connection=dataBaseConnection.getConnection()){
-            String fechaCierreReportes = sesionTutoria.getFechaCierreReportes();
-            String query = "INSERT INTO tutorias (FechaCierreReportes) VALUES (?)";
+            //idTutoria = sesionTutoria.getIdSesionTutoria();
+            String numeroTutoria = sesionTutoria.getNumTutoria();
+            String fechaCierreReporte = sesionTutoria.getFechaCierreReportes();
+            String query = "INSERT INTO tutorias (NumeroTutoria,FechaCierreReportes) VALUES (?,?) WHERE IdTutoria = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, fechaCierreReportes);
+            statement.setInt(1, idTutoria);
+            statement.setString(1, numeroTutoria);
+            statement.setString(2, fechaCierreReporte);
             filasInsertadas = statement.executeUpdate();
             System.out.println(filasInsertadas + " Fila insertada ");
-            
         } catch (SQLException ex) {
             log.error(ex);
         }
@@ -128,6 +131,13 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
         }
         return sesiones;
     }
+
+    @Override
+    public int buscarPeriodoPorId(String fechaInicio, String fechaFin) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
     
 }
+

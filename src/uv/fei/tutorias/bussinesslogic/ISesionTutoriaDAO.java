@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package uv.fei.tutorias.bussinesslogic;
 
 import java.util.List;
@@ -16,11 +12,13 @@ public interface ISesionTutoriaDAO {
 
     public int registrarSesionTutoria(SesionTutoria sesionTutoria);
 
-    public int registrarCierreDeReporte(SesionTutoria sesionTutoria);
-
-    public int eliminarSesionTutoriaPorId(int idTutoria);
+    public int registrarFechaDeCierreDeReporte(SesionTutoria sesionTutoria, int idTutoria);
+    
+    public int buscarPeriodoPorId(String fechaInicio, String fechaFin);
     
     public List<SesionTutoria> consultarTutoriaPorId(int idTutoriaBuscada);
+    
+    
 }
 
 

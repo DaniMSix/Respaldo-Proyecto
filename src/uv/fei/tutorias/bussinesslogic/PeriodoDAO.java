@@ -21,7 +21,7 @@ public class PeriodoDAO implements IPeriodoDAO {
         ArrayList<Periodo> periodos= new ArrayList<>();
         DataBaseConnection dataBaseConnection = new DataBaseConnection();
         try(Connection connection=dataBaseConnection.getConnection()){
-            String query="SELECT * FROM periodo;";
+            String query="SELECT * FROM periodo";
             PreparedStatement statement=connection.prepareStatement(query);
             ResultSet resultSet=statement.executeQuery();
             if (!resultSet.next()){
@@ -109,6 +109,62 @@ public class PeriodoDAO implements IPeriodoDAO {
         return periodos;
     }
 
-    
-    
+    @Override
+    public List<Periodo> consultarPeriodoFechaInicio() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int buscarFechasDelPeriodo(String fechaInicio, String fechaFin) {
+        int idPeriodoRecuperado = 0;
+        DataBaseConnection dataBaseConnection = new DataBaseConnection();
+        try(Connection connection=dataBaseConnection.getConnection()){
+            String query="SELECT * FROM periodo WHERE FechaInicio = ? && FechaFin = ?";
+            PreparedStatement statement=connection.prepareStatement(query);
+            statement.setString(1, fechaInicio);
+            statement.setString(2, fechaFin);
+            ResultSet resultSet=statement.executeQuery();
+            if (!resultSet.next()){
+                throw new SQLException("No se encontraron sesiones de tutorias registradas");
+            }else{
+                int idPeriodo;
+                    idPeriodo = resultSet.getInt("IdPeriodo");
+                    //Periodo periodo = new Periodo();
+                    //periodo.setIdPeriodo(idPeriodo);
+                    idPeriodoRecuperado = idPeriodo;
+            }
+        }catch (SQLException ex) {
+            log.fatal(ex);
+        }
+        return idPeriodoRecuperado;
+    }
+
+    @Override
+    public boolean comprobarSiExistePeriodo(String fechaInicio, String fechaFin) {
+        Boolean existe = false;
+        DataBaseConnection dataBaseConnection = new DataBaseConnection();
+        try(Connection connection=dataBaseConnection.getConnection()){
+            String query="SELECT * FROM periodo WHERE FechaInicio = ? && FechaFin = ?";
+            PreparedStatement statement=connection.prepareStatement(query);
+            statement.setString(1, fechaInicio);
+            statement.setString(2, fechaFin);
+            ResultSet resultSet=statement.executeQuery();
+            if (!resultSet.next()){
+                throw new SQLException("No se encontraron sesiones de tutorias registradas");
+            }else{
+                //int idPeriodo;
+                //idPeriodo = resultSet.getInt("IdPeriodo");
+                //Periodo periodo = new Periodo();
+                //periodo.setIdPeriodo(idPeriodo);
+                //idPeriodoRecuperado = idPeriodo;
+                existe = true;
+            }
+        }catch (SQLException ex) {
+            log.fatal(ex);
+        }
+        return existe;
+    }
 }
+
+    
+    
