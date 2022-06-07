@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import static uv.fei.tutorias.bussinesslogic.HorarioDAO.log;
 import uv.fei.tutorias.dataaccess.DataBaseConnection;
 import uv.fei.tutorias.domain.SesionTutoria;
 
@@ -82,7 +83,7 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
         DataBaseConnection dataBaseConnection = new DataBaseConnection();
         int filasInsertadas = 0;
         try(Connection connection=dataBaseConnection.getConnection()){
-            //idTutoria = sesionTutoria.getIdSesionTutoria();
+            
             String numeroTutoria = sesionTutoria.getNumTutoria();
             String fechaCierreReporte = sesionTutoria.getFechaCierreReportes();
             String query = "INSERT INTO tutorias (NumeroTutoria,FechaCierreReportes) VALUES (?,?) WHERE IdTutoria = ?";
@@ -135,6 +136,26 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
     @Override
     public int buscarPeriodoPorId(String fechaInicio, String fechaFin) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int actualizarFechasDeSesionTutoria(SesionTutoria sesionTutoria) throws SQLException {
+        DataBaseConnection dataBaseConnection = new DataBaseConnection();
+        int filasActualizadas = 0;
+        try(Connection connection=dataBaseConnection.getConnection()){
+            String numeroTutoria = sesionTutoria.getNumTutoria();
+            String fechaCierreReporte = sesionTutoria.getFechaCierreReportes();
+            String query =
+                    ("UPDATE tutorias SET NumeroTutoria = ?, FechaTutoria = ? WHERE IdTutoria = ?");
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, numeroTutoria);
+            statement.setString(2, fechaCierreReporte);
+            filasActualizadas = statement.executeUpdate();
+            System.out.println(filasActualizadas + " filas modificadas");
+        } catch (SQLException ex) {
+            log.fatal(ex);
+        }
+        return filasActualizadas;
     }
 
     

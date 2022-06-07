@@ -16,7 +16,7 @@ public class TutorDAO implements ITutorDAO{
     final static Logger log = Logger.getLogger(TutorDAO.class);
 
     @Override
-    public int registrarTutor(Tutor tutor) {
+    public int registrarTutor(Tutor tutor) throws SQLException{
         DataBaseConnection dataBaseConnection = new DataBaseConnection();
         int filasInsertadas = 0;
         try(Connection connection=dataBaseConnection.getConnection()){

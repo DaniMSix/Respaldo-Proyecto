@@ -3,20 +3,16 @@ package uv.gui.controladores;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,8 +24,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import uv.fei.tutorias.bussinesslogic.TutoradoDAO;
-import uv.fei.tutorias.dataaccess.DataBaseConnection;
 import uv.fei.tutorias.domain.Tutorado;
+import uv.mensajes.Alertas;
 
 public class ConsultarEstudianteController implements Initializable {
 
@@ -72,7 +68,6 @@ public class ConsultarEstudianteController implements Initializable {
         
         this.inicializarTablaTutorados();
         
-        
     }
     
     
@@ -92,14 +87,16 @@ public class ConsultarEstudianteController implements Initializable {
         
         tableTutorados.setItems(tablaTutorado);
         
-        
-        
-        
     }
 
     @FXML
     private void salirVentana(ActionEvent event) {
-        
+        Optional<ButtonType> respuesta = Alertas.mostrarAlertaBoton(Alert.AlertType.ERROR, "Cancelar", "Confirmar cancelar registro",
+                "¿Esta seguro de que desea cancelar el registro?");
+        if (respuesta.get() == ButtonType.OK) {
+                stage = (Stage) panelConsultarEstudiante.getScene().getWindow();
+                stage.close();
+        }
     }
 
     @FXML

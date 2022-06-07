@@ -1,6 +1,6 @@
 package uv.fei.tutorias.bussinesslogic;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 import uv.fei.tutorias.domain.Periodo;
 
@@ -22,4 +22,6 @@ public interface IPeriodoDAO {
     public int buscarFechasDelPeriodo(String fechaInicio, String fechaFin);
     
     public boolean comprobarSiExistePeriodo(String fechaInicio, String fechaFin);
+    
+    public Periodo consultarPeriodoActivo() throws SQLException;
 }

@@ -170,3 +170,8 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 2022-05-25 18:01:29 ERROR SesionTutoriaDAO:96 - java.sql.SQLException: No value specified for parameter 3
 2022-05-25 18:01:30 ERROR SesionTutoriaDAO:96 - java.sql.SQLException: No value specified for parameter 3
 2022-05-25 18:01:31 ERROR SesionTutoriaDAO:96 - java.sql.SQLException: No value specified for parameter 3
+2022-06-06 17:34:15 FATAL PeriodoDAO:191 - java.sql.SQLException: Access denied for user 'AdmiDaniela'@'187.148.65.12' (using password: YES)
+2022-06-06 17:35:05 FATAL PeriodoDAO:191 - java.sql.SQLException: Access denied for user 'AdmiDaniela'@'187.148.65.12' (using password: YES)
+2022-06-06 17:36:16 FATAL PeriodoDAO:191 - java.sql.SQLException: Column 'FechaInicio' not found.
+2022-06-06 18:02:01 FATAL PeriodoDAO:191 - java.sql.SQLException: Column 'FechaInicio' not found.
+2022-06-06 18:23:33 FATAL PeriodoDAO:191 - java.sql.SQLException: Column 'FechaInicio' not found.

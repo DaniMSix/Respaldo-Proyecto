@@ -164,6 +164,32 @@ public class PeriodoDAO implements IPeriodoDAO {
         }
         return existe;
     }
+
+    @Override
+    public Periodo consultarPeriodoActivo() throws SQLException{
+    Periodo periodo = new Periodo();
+    DataBaseConnection dataBaseConnection = new DataBaseConnection();
+    Connection connection=dataBaseConnection.getConnection();
+        String query="SELECT * FROM periodo WHERE activo = 1";
+        PreparedStatement statement=connection.prepareStatement(query);
+        ResultSet resultSet=statement.executeQuery();
+        if (!resultSet.next()){
+            throw new SQLException("No se encontraron periodos");
+        }else{
+            String fechaInicio;
+            String fechaFin;
+            int idPeriodo;
+            idPeriodo = resultSet.getInt("IdPeriodo");
+            fechaInicio = resultSet.getString("FechaInicio");
+            fechaFin = resultSet.getString("FechaFin");
+            periodo.setIdPeriodo(idPeriodo);
+            periodo.setFechaInicio(fechaInicio);
+            periodo.setFechaFin(fechaFin);
+        }
+    return periodo;
+}
+    
+    
 }
 
     
