@@ -1,22 +1,27 @@
 package uv.gui.controladores;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import uv.fei.tutorias.bussinesslogic.PeriodoDAO;
 import uv.fei.tutorias.bussinesslogic.SesionTutoriaDAO;
 import uv.fei.tutorias.domain.Periodo;
 import uv.fei.tutorias.domain.SesionTutoria;
+import uv.mensajes.Alertas;
 
 /**
  * FXML Controller class
@@ -25,118 +30,88 @@ import uv.fei.tutorias.domain.SesionTutoria;
  */
 public class RegistrarFechasDeCierreParaLaEntregaDelReporteController implements Initializable {
 
+    
+
+    Stage stage;
     @FXML
-    private ComboBox cbNumTutoria1;
+    private DatePicker dpPrimerReporte;
 
     @FXML
-    private ComboBox cbNumTutoria2;
+    private DatePicker dpSegundoReporte;
 
     @FXML
-    private ComboBox cbNumTutoria3;
-
-
-    @FXML
-    private DatePicker dpPrimeraSesion;
-
-    @FXML
-    private DatePicker dpSegundaSesion;
-
-    @FXML
-    private DatePicker dpTerceraSesion;
+    private DatePicker dpTercerReporte;
 
     @FXML
     private AnchorPane panelFechaEntregaReporte;
 
+    @FXML
+    private TextField tfPeriodoActivo;
 
-    Stage stage;
-    
-    ObservableList<String> opcionesComboPeriodoInicio;
-    
-    ObservableList<String> opcionesComboPeriodoFin;
-    
     @FXML
-    private ComboBox cbPeriodoInicio;
+    private Text txtPrimeraTutoria;
+
     @FXML
-    private ComboBox cbPeriodoFin;
+    private Text txtSegundaTutoria;
+
+    @FXML
+    private Text txtTerceraTutoria;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.cargarItems(cbNumTutoria1);
-        this.cargarItems(cbNumTutoria2);
-        this.cargarItems(cbNumTutoria3);
-        this.cargarComboboxPeriodos();
+        PeriodoDAO periodoDao = new PeriodoDAO();
+        Periodo periodo = new Periodo();
+        
+        try {
+            periodo = periodoDao.consultarPeriodoActivo();
+            tfPeriodoActivo.setText(periodo.getFechaInicio()+ " - " + periodo.getFechaFin());
+            tfPeriodoActivo.setEditable(false);
+            //lblPeriodoActivo.setEnabled(false);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrarFechasDeSesionDeTutoriaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
     @FXML
     private void cancelarRegistro(ActionEvent event) {
-        
+        Optional<ButtonType> respuesta = Alertas.mostrarAlertaBoton(Alert.AlertType.ERROR, "Cancelar", "Confirmar cancelar registro",
+                "¿Esta seguro de que desea cancelar el registro?");
+        if (respuesta.get() == ButtonType.OK) {
+                stage = (Stage) panelFechaEntregaReporte.getScene().getWindow();
+                stage.close();
+        }
     }
 
     @FXML
-    private void enviarInformacion(ActionEvent event){
+    private void enviarInformacion(ActionEvent event) throws SQLException {
+        registrarSesion(dpPrimerReporte, txtPrimeraTutoria);
+        registrarSesion(dpSegundoReporte, txtSegundaTutoria);
+        registrarSesion(dpTercerReporte, txtTerceraTutoria);
         
-            
-            Periodo periodo = new Periodo();
-            PeriodoDAO periodoDao = new PeriodoDAO();
-            
-            String periodoInicio = cbPeriodoInicio.getValue().toString();
-            String periodoFin = cbPeriodoFin.getValue().toString();
-            
-            if (periodoDao.comprobarSiExistePeriodo(periodoInicio, periodoFin)){
-                
-                int idPeriodoRegistrar = periodoDao.buscarFechasDelPeriodo(periodoInicio, periodoFin);
-                
-                // Registramos las fechas de cierre
-                registrarSesion(dpPrimeraSesion, cbNumTutoria1, idPeriodoRegistrar);
-                registrarSesion(dpSegundaSesion, cbNumTutoria2, idPeriodoRegistrar);
-                registrarSesion(dpTerceraSesion, cbNumTutoria3, idPeriodoRegistrar);
-
-            } else {
-                System.out.println("Está mal");
-            }
     }
     
-    public void registrarSesion(DatePicker fechaReporte, ComboBox numeroTutoria, int idPeriodoRegistrar){
+    public void registrarSesion(DatePicker fechaReporte, Text txtPrimeraTutoria) throws SQLException{
+        PeriodoDAO periodoDao = new PeriodoDAO();
+        Periodo periodo = new Periodo();
+        periodo = periodoDao.consultarPeriodoActivo();
+        int idPeriodo = periodo.getIdPeriodo();
+        
         SesionTutoriaDAO SesionTutoriaDAO = new SesionTutoriaDAO();
         SesionTutoria nuevaSesionTutoria = new SesionTutoria();
-                
-        String fecha = fechaReporte.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        
-        
+        String fecha = fechaReporte.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         nuevaSesionTutoria.setFechaCierreReportes(fecha);
-        nuevaSesionTutoria.setNumTutoria(numeroTutoria.getValue().toString());
-        SesionTutoriaDAO.registrarFechaDeCierreDeReporte(nuevaSesionTutoria, idPeriodoRegistrar);
         
+        String numTutoria = txtPrimeraTutoria.getText();
+        
+        try{
+        SesionTutoriaDAO.registrarFechaDeCierreDeReporte(nuevaSesionTutoria, idPeriodo,numTutoria);
+        }catch(SQLException e){
+            Alertas.mostrarAlerta(Alert.AlertType.CONFIRMATION, "Error", "Error en conexion con la base de datos",
+                "El sistema presenta dificultades para realizar la conexion con la base de datos, por favor intente mas tarde.");
+        }
         
     }
     
-    public void cargarItems(ComboBox combo){
-        ObservableList<String> list = FXCollections.observableArrayList("1","2","3");
-        combo.setItems(list);
-    }
     
-    public void cargarComboboxPeriodos(){
-        opcionesComboPeriodoInicio = FXCollections.observableArrayList();
-        PeriodoDAO periodoDao = new PeriodoDAO();
-        List<Periodo> periodos = periodoDao.consultarPeriodoTodosLosPeriodos();
-
-        //opcionesComboPeriodo.add("Periodo escolar");
-        for(Periodo periodo : periodos){
-            opcionesComboPeriodoInicio.add(periodo.getFechaInicio());
-        }
-        
-        cbPeriodoInicio.setItems(opcionesComboPeriodoInicio);
-        
-        //-------------------------------------------------
-        
-        opcionesComboPeriodoFin = FXCollections.observableArrayList();
-
-        //opcionesComboPeriodo.add("Periodo escolar");
-        for(Periodo periodo : periodos){
-            opcionesComboPeriodoFin.add(periodo.getFechaFin());
-        }
-        
-        cbPeriodoFin.setItems(opcionesComboPeriodoFin);
-
-    }
 }

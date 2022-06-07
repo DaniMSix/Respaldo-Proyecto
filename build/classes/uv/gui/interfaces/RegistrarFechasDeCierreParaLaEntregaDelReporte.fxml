@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="panelFechaEntregaReporte" prefHeight="467.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uv.gui.controladores.RegistrarFechasDeCierreParaLaEntregaDelReporteController">
+<AnchorPane id="AnchorPane" fx:id="panelFechaEntregaReporte" prefHeight="400.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uv.gui.controladores.RegistrarFechasDeCierreParaLaEntregaDelReporteController">
    <children>
-      <Text layoutX="23.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el periodo escolar">
+      <Text layoutX="23.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo activo:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text layoutX="23.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha inicio:">
+      <Text layoutX="23.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecciones las fechas correspondientes de cierre para la entrega del reporte:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text layoutX="23.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecciones las fechas correspondientes de cierre para la entrega del reporte:">
+      <DatePicker fx:id="dpPrimerReporte" layoutX="220.0" layoutY="164.0" />
+      <Text layoutX="65.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número tutoría:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <DatePicker fx:id="dpPrimeraSesion" layoutX="161.0" layoutY="210.0" />
-      <Text layoutX="36.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número tutoría:">
+      <DatePicker fx:id="dpSegundoReporte" layoutX="220.0" layoutY="213.0" />
+      <DatePicker fx:id="dpTercerReporte" layoutX="220.0" layoutY="262.0" />
+      <Button layoutX="115.0" layoutY="330.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="35.0" prefWidth="91.0" text="Cancelar" />
+      <Button layoutX="315.0" layoutY="330.0" mnemonicParsing="false" onAction="#enviarInformacion" prefHeight="35.0" prefWidth="91.0" text="Guardar" />
+      <TextField fx:id="tfPeriodoActivo" layoutX="135.0" layoutY="35.0" />
+      <Text fx:id="txtPrimeraTutoria" layoutX="106.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <DatePicker fx:id="dpSegundaSesion" layoutX="161.0" layoutY="259.0" />
-      <DatePicker fx:id="dpTerceraSesion" layoutX="161.0" layoutY="308.0" />
-      <Button layoutX="135.0" layoutY="395.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="35.0" prefWidth="91.0" text="Cancelar" />
-      <Button layoutX="335.0" layoutY="395.0" mnemonicParsing="false" onAction="#enviarInformacion" prefHeight="35.0" prefWidth="91.0" text="Guardar" />
-      <ComboBox fx:id="cbNumTutoria1" layoutX="38.0" layoutY="211.0" prefHeight="25.0" prefWidth="85.0" />
-      <ComboBox fx:id="cbNumTutoria2" layoutX="38.0" layoutY="259.0" prefHeight="25.0" prefWidth="85.0" />
-      <ComboBox fx:id="cbNumTutoria3" layoutX="38.0" layoutY="308.0" prefHeight="25.0" prefWidth="85.0" />
-      <ComboBox fx:id="cbPeriodoInicio" layoutX="106.0" layoutY="64.0" prefHeight="25.0" prefWidth="130.0" />
-      <Text layoutX="260.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha fin:">
+      <Text fx:id="txtSegundaTutoria" layoutX="106.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <ComboBox fx:id="cbPeriodoFin" layoutX="326.0" layoutY="64.0" prefHeight="25.0" prefWidth="130.0" />
+      <Text fx:id="txtTerceraTutoria" layoutX="106.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

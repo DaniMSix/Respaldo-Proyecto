@@ -7,21 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
-import static uv.fei.tutorias.bussinesslogic.HorarioDAO.log;
 import uv.fei.tutorias.dataaccess.DataBaseConnection;
 import uv.fei.tutorias.domain.SesionTutoria;
 
-/**
- *
- * @author Usuario
- */
+
 public class SesionTutoriaDAO implements ISesionTutoriaDAO {
     
     final static Logger log = Logger.getLogger(SesionTutoriaDAO.class);
 
     
     @Override
-    public int registrarSesionTutoria(SesionTutoria sesionTutoria) {
+    public int registrarSesionTutoria(SesionTutoria sesionTutoria) throws SQLException{
         DataBaseConnection dataBaseConnection = new DataBaseConnection();
         int filasInsertadas = 0;
         try(Connection connection=dataBaseConnection.getConnection()){
@@ -78,28 +74,6 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
     }
 
     @Override
-    public int registrarFechaDeCierreDeReporte(SesionTutoria sesionTutoria, int idTutoria) {
-
-        DataBaseConnection dataBaseConnection = new DataBaseConnection();
-        int filasInsertadas = 0;
-        try(Connection connection=dataBaseConnection.getConnection()){
-            
-            String numeroTutoria = sesionTutoria.getNumTutoria();
-            String fechaCierreReporte = sesionTutoria.getFechaCierreReportes();
-            String query = "INSERT INTO tutorias (NumeroTutoria,FechaCierreReportes) VALUES (?,?) WHERE IdTutoria = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, idTutoria);
-            statement.setString(1, numeroTutoria);
-            statement.setString(2, fechaCierreReporte);
-            filasInsertadas = statement.executeUpdate();
-            System.out.println(filasInsertadas + " Fila insertada ");
-        } catch (SQLException ex) {
-            log.error(ex);
-        }
-        return filasInsertadas;
-    }
-
-    @Override
     public List<SesionTutoria> consultarTutoriaPorId(int idTutoriaBuscada) {
         ArrayList<SesionTutoria> sesiones= new ArrayList<>();
         DataBaseConnection dataBaseConnection = new DataBaseConnection();
@@ -139,23 +113,41 @@ public class SesionTutoriaDAO implements ISesionTutoriaDAO {
     }
 
     @Override
-    public int actualizarFechasDeSesionTutoria(SesionTutoria sesionTutoria) throws SQLException {
+    public int actualizarFechasDeSesionTutoria(SesionTutoria sesionTutoria, int idPeriodo, String numTutoria) throws SQLException {
         DataBaseConnection dataBaseConnection = new DataBaseConnection();
         int filasActualizadas = 0;
         try(Connection connection=dataBaseConnection.getConnection()){
-            String numeroTutoria = sesionTutoria.getNumTutoria();
-            String fechaCierreReporte = sesionTutoria.getFechaCierreReportes();
-            String query =
-                    ("UPDATE tutorias SET NumeroTutoria = ?, FechaTutoria = ? WHERE IdTutoria = ?");
+            String fechaTutoria = sesionTutoria.getFechaTutoria();
+            String query = "UPDATE tutorias SET FechaTutoria = ? WHERE tutorias.IdPeriodo = ? AND tutorias.NumeroTutoria = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, numeroTutoria);
-            statement.setString(2, fechaCierreReporte);
+            statement.setString(1, fechaTutoria);
+            statement.setInt(2, idPeriodo);
+            statement.setString(3, numTutoria);
             filasActualizadas = statement.executeUpdate();
             System.out.println(filasActualizadas + " filas modificadas");
         } catch (SQLException ex) {
-            log.fatal(ex);
+            log.error(ex);
         }
         return filasActualizadas;
+    }
+
+    @Override
+    public int registrarFechaDeCierreDeReporte(SesionTutoria sesionTutoria, int idPeriodo, String numTutoria) throws SQLException{
+        DataBaseConnection dataBaseConnection = new DataBaseConnection();
+        int filasInsertadas = 0;
+        try(Connection connection=dataBaseConnection.getConnection()){
+            String fechaCierreReporte = sesionTutoria.getFechaCierreReportes();
+            String query = "UPDATE tutorias SET FechaCierreReportes = ? WHERE tutorias.IdPeriodo = ? AND tutorias.NumeroTutoria = ?";
+            PreparedStatement statement=connection.prepareStatement(query);
+            statement.setString(1,fechaCierreReporte);
+            statement.setInt(2,idPeriodo);
+            statement.setString(3, numTutoria);
+            filasInsertadas = statement.executeUpdate();
+            System.out.println(filasInsertadas + " Fila insertada ");
+        } catch (SQLException ex) {
+            log.error(ex);
+        }
+        return filasInsertadas;
     }
 
     

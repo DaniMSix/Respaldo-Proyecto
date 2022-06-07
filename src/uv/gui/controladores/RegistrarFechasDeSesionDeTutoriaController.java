@@ -7,14 +7,11 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -61,36 +58,34 @@ public class RegistrarFechasDeSesionDeTutoriaController implements Initializable
         }
     }
     
-    public String convertirDatePickerToString(DatePicker datepicker){
-        String nuevoString = datepicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        return nuevoString;
-    }
 
     @FXML
     void enviar(ActionEvent event) throws SQLException{
         
+        registrarSesion(dpPrimeraSesion, tfPrimeraTutoria);
+        registrarSesion(dpSegundaSesion, tfSegundaTutoria);
+        registrarSesion(dpTerceraSesion, tfTerceraTutoria);
         
-        
-        
-        
-        
-        
-        
-}
+    }
 
     
-    public void registrarSesion(DatePicker fechaTutoria, ComboBox numeroTutoria, int idPeriodoRegistrar){
+    public void registrarSesion(DatePicker fechaTutoria, Text numeroTutoria) throws SQLException{
+        
+        PeriodoDAO periodoDao = new PeriodoDAO();
+        Periodo periodo = new Periodo();
+        periodo = periodoDao.consultarPeriodoActivo();
+        int idPeriodo = periodo.getIdPeriodo();
         
         SesionTutoriaDAO SesionTutoriaDAO = new SesionTutoriaDAO();
         SesionTutoria nuevaSesionTutoria = new SesionTutoria();
                 
-        String fecha = fechaTutoria.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String fecha = fechaTutoria.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         
         nuevaSesionTutoria.setFechaTutoria(fecha);
-        nuevaSesionTutoria.setNumTutoria(numeroTutoria.getValue().toString());
-        nuevaSesionTutoria.setIdPeriodo(idPeriodoRegistrar);
+        nuevaSesionTutoria.setNumTutoria(numeroTutoria.getText());
+        nuevaSesionTutoria.setIdPeriodo(idPeriodo);
         try{
-        SesionTutoriaDAO.actualizarFechasDeSesionTutoria(nuevaSesionTutoria);
+        SesionTutoriaDAO.registrarSesionTutoria(nuevaSesionTutoria);
         }catch(SQLException e){
             Alertas.mostrarAlerta(Alert.AlertType.CONFIRMATION, "Error", "Error en conexion con la base de datos",
                 "El sistema presenta dificultades para realizar la conexion con la base de datos, por favor intente mas tarde.");
@@ -105,20 +100,11 @@ public class RegistrarFechasDeSesionDeTutoriaController implements Initializable
         try {
             periodo = periodoDao.consultarPeriodoActivo();
             lblPeriodoActivo.setText(periodo.getFechaInicio()+ " - " + periodo.getFechaFin());
-            
-            //lblPeriodoActivo.setEditable(false);
-            lblPeriodoActivo.setEnabled(false);
+            lblPeriodoActivo.setEditable(false);
+            //lblPeriodoActivo.setEnabled(false);
             
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarFechasDeSesionDeTutoriaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        //Mostrar el periodo 
-        //mande id 
-        
     }
-    
-    
-
 }

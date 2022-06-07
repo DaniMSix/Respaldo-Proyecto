@@ -129,8 +129,6 @@ public class PeriodoDAO implements IPeriodoDAO {
             }else{
                 int idPeriodo;
                     idPeriodo = resultSet.getInt("IdPeriodo");
-                    //Periodo periodo = new Periodo();
-                    //periodo.setIdPeriodo(idPeriodo);
                     idPeriodoRecuperado = idPeriodo;
             }
         }catch (SQLException ex) {

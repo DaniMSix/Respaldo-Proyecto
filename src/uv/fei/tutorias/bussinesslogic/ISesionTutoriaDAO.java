@@ -11,15 +11,15 @@ import uv.fei.tutorias.domain.SesionTutoria;
 public interface ISesionTutoriaDAO {
     public List<SesionTutoria> consultarSesionesTutoriaPorNumero(String tutoriaBuscada);
 
-    public int registrarSesionTutoria(SesionTutoria sesionTutoria);
+    public int registrarSesionTutoria(SesionTutoria sesionTutoria)throws SQLException;
 
-    public int registrarFechaDeCierreDeReporte(SesionTutoria sesionTutoria, int idTutoria);
+    public int registrarFechaDeCierreDeReporte(SesionTutoria sesionTutoria, int idPeriodo, String numTutoria)throws SQLException;
     
     public int buscarPeriodoPorId(String fechaInicio, String fechaFin);
     
     public List<SesionTutoria> consultarTutoriaPorId(int idTutoriaBuscada);
     
-    public int actualizarFechasDeSesionTutoria(SesionTutoria sesionTutoria) throws SQLException;
+    public int actualizarFechasDeSesionTutoria(SesionTutoria sesionTutoria, int idPeriodo, String numTutoria) throws SQLException;
 }
 
 

@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package uv.gui.controladores;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +16,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import uv.fei.tutorias.bussinesslogic.PeriodoDAO;
 import uv.fei.tutorias.bussinesslogic.SesionTutoriaDAO;
@@ -25,11 +26,7 @@ import uv.fei.tutorias.domain.Periodo;
 import uv.fei.tutorias.domain.SesionTutoria;
 import uv.mensajes.Alertas;
 
-/**
- * FXML Controller class
- *
- * @author DMS19
- */
+
 public class ModificarFechasDeSesionDeTutoriaController implements Initializable {
 
     @FXML
@@ -39,54 +36,69 @@ public class ModificarFechasDeSesionDeTutoriaController implements Initializable
     @FXML
     private DatePicker dpTerceraSesion;
     @FXML
-    private ComboBox cbNumeroTutoria1;
+    private AnchorPane panelModificarSesionTutoria;
     @FXML
-    private ComboBox cbNumeroTutoria2;
+    private TextField tfPeriodoActivo;
     @FXML
-    private ComboBox cbNumeroTutoria3;
+    private Text txtPrimeraTutoria;
     @FXML
-    private ComboBox comboPeriodoInicio;
+    private Text txtSegundaTutoria;
     @FXML
-    private ComboBox comboPeriodoFin;
-    @FXML
-    private AnchorPane modificarSesionTutoria;
+    private Text txtTerceraTutoria;
     
     Stage stage;
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.cargarItems(cbNumeroTutoria1);
-        this.cargarItems(cbNumeroTutoria2);
-        this.cargarItems(cbNumeroTutoria3);
+        PeriodoDAO periodoDao = new PeriodoDAO();
+        Periodo periodo = new Periodo();
+        
+        try {
+            periodo = periodoDao.consultarPeriodoActivo();
+            tfPeriodoActivo.setText(periodo.getFechaInicio()+ " - " + periodo.getFechaFin());
+            tfPeriodoActivo.setEditable(false);
+            //lblPeriodoActivo.setEnabled(false);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrarFechasDeSesionDeTutoriaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
     @FXML
-    private void guardarInformacion(ActionEvent event) {
+    private void guardarInformacion(ActionEvent event) throws SQLException {
         
-        PeriodoDAO periodoDao = new PeriodoDAO();
-        Periodo nuevoPeriodo = new Periodo();
+        modificarSesion(dpPrimeraSesion, txtPrimeraTutoria);
+        modificarSesion(dpSegundaSesion, txtSegundaTutoria);
+        modificarSesion(dpTerceraSesion, txtTerceraTutoria);
         
-        String periodoInicio = (String) comboPeriodoInicio.getValue();
-        String periodoFin = (String) comboPeriodoFin.getValue();
-        
-        nuevoPeriodo.setFechaInicio(periodoInicio);
-        nuevoPeriodo.setFechaFin(periodoFin);
         
     }
     
-    public void modificarSesion(DatePicker fechaTutoria, ComboBox numeroTutoria, int idPeriodoRegistrar){
+    public void modificarSesion(DatePicker fechaTutoria, Text numeroTutoria) throws SQLException{
+        PeriodoDAO periodoDao = new PeriodoDAO();
+        Periodo periodo = new Periodo();
+        periodo = periodoDao.consultarPeriodoActivo();
+        int idPeriodo = periodo.getIdPeriodo();
+        
         SesionTutoriaDAO SesionTutoriaDAO = new SesionTutoriaDAO();
         SesionTutoria nuevaSesionTutoria = new SesionTutoria();
-                
-        String fecha = fechaTutoria.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        
+        String fecha = fechaTutoria.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         nuevaSesionTutoria.setFechaTutoria(fecha);
-        nuevaSesionTutoria.setNumTutoria(numeroTutoria.getValue().toString());
-        nuevaSesionTutoria.setIdPeriodo(idPeriodoRegistrar);
-        SesionTutoriaDAO.registrarSesionTutoria(nuevaSesionTutoria);
+        
+        String numTutoria = numeroTutoria.getText();
+        
+        System.out.println("IdPeriodo "+ idPeriodo + "NumTutoria "+ numTutoria);
+        
+        try{
+        SesionTutoriaDAO.actualizarFechasDeSesionTutoria(nuevaSesionTutoria, idPeriodo, numTutoria);
+        }catch(SQLException e){
+            Alertas.mostrarAlerta(Alert.AlertType.CONFIRMATION, "Error", "Error en conexion con la base de datos",
+                "El sistema presenta dificultades para realizar la conexion con la base de datos, por favor intente mas tarde.");
+        }
         
     }
 
@@ -95,13 +107,9 @@ public class ModificarFechasDeSesionDeTutoriaController implements Initializable
         Optional<ButtonType> respuesta = Alertas.mostrarAlertaBoton(Alert.AlertType.ERROR, "Cancelar", "Confirmar cancelar registro",
                 "¿Esta seguro de que desea cancelar el registro?");
         if (respuesta.get() == ButtonType.OK) {
-                stage = (Stage) modificarSesionTutoria.getScene().getWindow();
+                stage = (Stage) panelModificarSesionTutoria.getScene().getWindow();
                 stage.close();
         }
     }
     
-    public void cargarItems(ComboBox combo){
-        ObservableList<String> list = FXCollections.observableArrayList("1","2","3");
-        combo.setItems(list);
-    }
 }
