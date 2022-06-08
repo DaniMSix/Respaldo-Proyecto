@@ -10,20 +10,28 @@ import javafx.scene.control.ButtonType;
 
 public class Alertas {
     
-    public static void mostrarAlerta(Alert.AlertType tipoAlerta, String titulo, String encabezado, String contenido) {
-        Alert alerta = new Alert(tipoAlerta);
-        alerta.setTitle(titulo);
-        alerta.setHeaderText(encabezado);
-        alerta.setContentText(contenido);
-        alerta.showAndWait();
+    public static void mostrarAlertaCamposVacios(){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Atencion");
+        alert.setHeaderText("Campos vacios");
+        alert.setContentText("Introduzca los campos necesarios para el inicio de sesion");
+        alert.showAndWait();
     }
     
-    public static Optional<ButtonType> mostrarAlertaBoton(Alert.AlertType tipoAlerta, String titulo, String encabezado, String contenido){
-        Alert alerta = new Alert(tipoAlerta);
-        alerta.setTitle(titulo);
-        alerta.setHeaderText(encabezado);
-        alerta.setContentText(contenido);
-        return alerta.showAndWait();
+    public static void mostrarAlertaErrorConexionDB(){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Atencion");
+        alert.setHeaderText("Perdida de conexión");
+        alert.setContentText("No se pudo conectar con la base de datos, por favor intente mas tarde");
+        alert.showAndWait();        
+    }
+    
+    public static void mostrarAlertaUsuarioIncorrecto(){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Atencion");
+        alert.setHeaderText("No se encontró el usuario");
+        alert.setContentText("No se encontró el usuario ingresado, por favor verifique.");
+        alert.showAndWait();
     }
     
 }
